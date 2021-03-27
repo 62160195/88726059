@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h2>ผู้แต่ง</h2>
+    <hr width="200" align="left">
+        รหัสผู้แต่ง<br><input type="text" id="authorID"><br>
+        ชื่อผู้แต่ง<br><input type="text" id="author"><br>
+        นามปากกา<br><input type="text" id="penname"><br>
+        <button onclick="save()">Save</button><hr>
+        <div id="disp"></div>
+        <script>
+            var authors = JSON.parse(localStorage.getItem("author"));
+            if(!Array.isArray(authors))
+                authors = new Array();
+
+            for(i=0 ; i<authors.length; i++){
+                    document.getElementById('disp').innerHTML += "รหัสผู้แต่ง:" + authors[i].authorID + "<br>" +"ชื่อผู้แต่ง:"
+                    + authors[i].author + "<br>" + "นามปากกา:" + authors[i].penname + "<hr>"
+                }
+                
+            function save(){
+                i = document.getElementById('authorID').value;
+                n = document.getElementById('author').value;
+                p = document.getElementById('penname').value;
+                obj = {authorID: i, author:n , penname:p }
+                authors.push(obj);
+                myJSON = JSON.stringify(authors);
+                localStorage.setItem("author", myJSON);
+               
+                text = JSON.parse(localStorage.getItem("author"));
+                document.getElementById('disp').innerHTML = "";
+                for(i=0 ; i<text.length; i++){
+                    document.getElementById('disp').innerHTML += "รหัสผู้แต่ง:" + text[i].authorID + "<br>" +"ชื่อผู้แต่ง:"
+                    + text[i].author + "<br>" + "นามปากกา:" +text[i].penname + "<hr>"
+                }
+                document.getElementById('authorID').value = '';
+                document.getElementById('author').value = '';
+                document.getElementById('penname').value = '';
+                document.getElementById('authorID').focus();
+            }
+        </script>
+</body>
+</html>

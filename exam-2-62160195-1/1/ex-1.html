@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>ผู้แต่ง</h2><hr>
+
+<p id="demo"></p>
+
+<script>
+var authors = [
+ { authorID: 1111, author: 'wittawas', penname: 'witty100' }, 
+ { authorID: 1112, author: 'jakkarin', penname: 'พ่อบ้านใจกล้า' }, 
+ { authorID: 1113, author: 'worawit', penname: 'obob' }
+];
+
+var i = 0;
+var len = authors.length;
+var text = "";
+
+for (; i < len; ) {
+  text += "รหัส: " + authors[i].authorID + "<br>";
+  text += "ชื่อ: " + authors[i].author + "<br>";
+  text += "นามปากกา: " + authors[i].penname + "<br>";
+  text +="<hr>";
+  
+  i++;
+}
+
+function show() {
+  return text;
+}
+
+document.getElementById("demo").innerHTML = show();
+
+
+</script>
+
+</body>
+</html>
